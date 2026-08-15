@@ -1,0 +1,283 @@
+/*
+  Custom classes from the Stitch export that aren't plain Tailwind utilities.
+  Tailwind itself is loaded via CDN in index.html — this file only holds
+  things Tailwind can't generate (custom keyframes, gradients, textures).
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.float-animation {
+  animation: float 20s ease-in-out infinite;
+}
+.float-delayed {
+  animation: float 25s ease-in-out infinite 5s;
+}
+.float-slow {
+  animation: float 30s ease-in-out infinite 10s;
+}
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.9); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.glow-text {
+  text-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+}
+
+.parchment-bg {
+  background-color: #e8dcb8;
+  background-image: radial-gradient(circle at center, #f1e4c3 0%, #d4b886 65%, #8b5a2b 100%);
+}
+
+.burnt-edges {
+  box-shadow: inset 0 0 150px rgba(60, 40, 20, 0.9), inset 0 0 300px rgba(40, 20, 10, 0.7);
+  pointer-events: none;
+}
+
+.blend-mask {
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
+}
+
+.paper-grain {
+  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 4px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* From Screen 2: Quote Reveal */
+.bg-texture {
+  background-color: #35301e;
+  background-image: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 100%);
+}
+.parchment-burnt {
+  background-color: #f7eed2;
+  border: 1px solid #755717;
+  box-shadow: inset 0 0 60px rgba(38, 25, 0, 0.4), inset 0 0 15px rgba(38, 25, 0, 0.6), 0 15px 40px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+}
+.parchment-burnt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 100px rgba(93, 66, 1, 0.2);
+  pointer-events: none;
+  z-index: 1;
+}
+.coffee-stain-1 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 45% 55% 40% 60%;
+  border: 3px solid rgba(117, 87, 23, 0.15);
+  top: -30px;
+  right: -40px;
+  pointer-events: none;
+  transform: rotate(25deg);
+  z-index: 2;
+}
+.coffee-stain-2 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 70%, rgba(117, 87, 23, 0.1) 100%);
+  bottom: 20%;
+  left: -20px;
+  pointer-events: none;
+  z-index: 2;
+}
+.ambient-shadow {
+  box-shadow: 0 4px 20px rgba(38, 25, 0, 0.2);
+}
+
+/* From Screen 4: Grimoire (renamed to avoid clashing with screen 1/2 classes
+   of the same name but different values) */
+.texture-overlay {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBDWLwuGdB3yS3lsmalHuOraQ6EeERQu8ooPhQm6_5MReH2S6YOqfuPG2cYdtZtmtFCJmPJk_9C_oORwI9WaNeLDw2ZYrhWbYzIh_8uDGr-SG4EaVXpycQamIzyOQhzt_5WIzxaJ5cftWchkAVm5xPo6cn6__ap2UJJlH5DYQ43k45NEonq9TTHj1ejypOX7wpUUPseJB2qKmjadVtot5HA_9AHPcDmWinO_V17pDPYUqvfeE4uBGcFYw);
+  background-size: cover;
+  background-attachment: fixed;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+}
+.wood-bg {
+  background-color: #2c1e16;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAKKdE3xq6VoDkE4XFbhrsnGsoimCQJilWKLeXxZ8Av5w-QqWiITR6aLhh0SkHjAKxnf0yHvihK706HqendGDeLqjs4XWyEHuk4EsMSdj9nYq3wIxVHV4cPTjIZhTjpB5XHXHDGuNmtPt7oW__nwFDwPCl829Nv880OiPj6xdgwc0ecpSNKtsK8saepDq0pLoPIyWstVxn9LcCh7pWpL2cXREvW1lVrC5_7LXRe2JIGNrwLYxalZDK98g);
+  background-size: cover;
+  background-attachment: fixed;
+  background-blend-mode: multiply;
+}
+.journal-bg {
+  background-color: #e5d8c3;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 80%, rgba(101, 67, 33, 0.15) 0%, transparent 30%),
+    url('https://www.transparenttextures.com/patterns/old-wall.png');
+  background-blend-mode: multiply, multiply, normal;
+  box-shadow:
+    inset 0 0 40px rgba(80, 50, 20, 0.4),
+    inset 0 0 10px rgba(0, 0, 0, 0.2),
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 10px #3a2414,
+    0 0 0 14px #26160b;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.journal-spine {
+  background: linear-gradient(to right,
+    rgba(30, 20, 10, 0.3) 0%,
+    rgba(60, 40, 20, 0.1) 20%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    rgba(60, 40, 20, 0.1) 80%,
+    rgba(30, 20, 10, 0.4) 100%);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4), -2px 0 5px rgba(0,0,0,0.1), 2px 0 5px rgba(0,0,0,0.1);
+}
+.grimoire-ambient-shadow {
+  box-shadow: 0 4px 20px -2px rgba(74, 62, 49, 0.1);
+}
+.page-curl {
+  position: relative;
+}
+.page-curl::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, transparent 45%, rgba(255,255,255,0.2) 48%, rgba(255,255,255,0.4) 50%, rgba(0, 0, 0, 0.15) 52%, rgba(0,0,0,0.2) 100%);
+  border-top-left-radius: 6px;
+  box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.08);
+}
+.grimoire-burnt-edges {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 30px 5px rgba(90, 50, 20, 0.3), inset 0 0 100px rgba(120, 80, 40, 0.1);
+  border-radius: inherit;
+  z-index: 5;
+}
+
+/* From Screen 3: Mood & Language Selection */
+.gold-border-subtle {
+  border: 1px solid rgba(197, 160, 89, 0.3);
+}
+.glass-vial-selected {
+  border-color: #755717 !important;
+  background-color: rgba(255, 222, 165, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px -4px rgba(117, 87, 23, 0.2);
+}
+.glass-vial {
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 40;
+}
+.glass-vial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px -4px rgba(74, 62, 49, 0.15);
+}
+.compass-rose {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.lang-active {
+  color: #755717;
+  font-weight: bold;
+}
+.lang-inactive {
+  color: #7b757c;
+}
+.mood-burnt-edges {
+  box-shadow: inset 0 0 120px 30px rgba(92, 64, 51, 0.35), inset 0 0 60px 15px rgba(74, 54, 42, 0.25);
+  pointer-events: none;
+}
+.mood-ambient-shadow {
+  box-shadow: 0 4px 20px -2px rgba(74, 62, 49, 0.1);
+}
+
+/* From Screen 5: Suggestion Box (renamed texture-overlay/ambient-shadow to
+   avoid clashing with the different values already used in Grimoire/etc.) */
+.suggestion-texture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+  mix-blend-mode: multiply;
+}
+.suggestion-ambient-shadow {
+  box-shadow: 0 10px 30px rgba(74, 62, 49, 0.15), 0 0 0 1px rgba(197, 160, 89, 0.2);
+}
+.journal-card {
+  background-color: #f9f6ef;
+  background-image:
+    radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.06) 0%, transparent 25%),
+    radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.08) 0%, transparent 30%),
+    linear-gradient(rgba(197, 160, 89, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 2.5rem;
+  background-position: 0 0, 0 0, 0 1.25rem;
+  position: relative;
+  border: 1px solid rgba(139, 69, 19, 0.15);
+  border-radius: 6px 12px 8px 4px;
+  box-shadow: inset 0 0 30px rgba(139, 69, 19, 0.1), 0 10px 30px rgba(74, 62, 49, 0.2);
+}
+.input-line {
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+.input-line:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid #755717;
+}
+.letter-animation {
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s ease-in-out;
+}
+.sent-state {
+  transform: scale(0.5) translateX(100vw) translateY(-50vh) rotate(15deg);
+  opacity: 0;
+}
+.wax-seal {
+  background: radial-gradient(circle at 35% 35%, #b31b1b, #700b0b);
+  border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%;
+  box-shadow:
+    inset 3px 3px 6px rgba(255,255,255,0.25),
+    inset -3px -3px 8px rgba(0,0,0,0.6),
+    3px 6px 10px rgba(0,0,0,0.4);
+  border: 1px solid #4a0404;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wax-seal:hover {
+  transform: scale(1.08) rotate(-5deg);
+}
+.wax-seal-inner {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.15);
+  box-shadow: inset 1px 1px 4px rgba(0,0,0,0.5), 0 1px 1px rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at 40% 40%, #9c1515, #680808);
+}
