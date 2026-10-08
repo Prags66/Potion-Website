@@ -40,6 +40,7 @@ function Card({ quote, onRemove }) {
 
 export default function Grimoire({ favorites, loading, onRemove, onBack, onNavigateSuggestion, onNavigateArchives, onOpenModal }) {
   const [query, setQuery] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const filtered = query.trim()
     ? favorites.filter(
@@ -68,13 +69,11 @@ export default function Grimoire({ favorites, loading, onRemove, onBack, onNavig
             Life's Potion
           </a>
           <nav className="hidden md:flex gap-gutter items-center">
-            <button type="button" className="font-label-caps text-label-caps text-on-surface-variant font-medium hover:text-tertiary transition-colors duration-300 bg-transparent" onClick={onBack}>The Lab</button>
-            <span className="font-label-caps text-label-caps text-primary font-bold border-b-2 border-tertiary pb-1">My Grimoire</span>
-            <button type="button" className="font-label-caps text-label-caps text-on-surface-variant font-medium hover:text-tertiary transition-colors duration-300 bg-transparent" onClick={onNavigateArchives}>Archives</button>
-            <button type="button" className="font-label-caps text-label-caps text-on-surface-variant font-medium hover:text-tertiary transition-colors duration-300 bg-transparent" onClick={onNavigateSuggestion}>Apothecary</button>
+           <button className="md:hidden p-2 text-on-surface-variant bg-transparent" onClick={() => setMenuOpen(!menuOpen)}> <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span> </button>
           </nav>
         </div>
       </header>
+      {menuOpen && ( <div className="md:hidden w-full bg-surface border-b border-tertiary/20 flex flex-col items-center gap-4 py-6 relative z-40"> <button type="button" className="font-label-caps text-label-caps text-on-surface-variant bg-transparent" onClick={() => { onBack(); setMenuOpen(false) }}>The Lab</button> <span className="font-label-caps text-label-caps text-primary font-bold">My Grimoire</span> <button type="button" className="font-label-caps text-label-caps text-on-surface-variant bg-transparent" onClick={() => { onNavigateArchives(); setMenuOpen(false) }}>Archives</button> <button type="button" className="font-label-caps text-label-caps text-on-surface-variant bg-transparent" onClick={() => { onNavigateSuggestion(); setMenuOpen(false) }}>Apothecary</button> </div> )}
 
       <main className="flex-grow max-w-[1400px] mx-auto w-full px-4 md:px-margin-desktop py-12 relative z-10">
         <div className="journal-bg w-full relative p-8 md:p-16 flex flex-col md:flex-row gap-12 md:gap-0 overflow-hidden">

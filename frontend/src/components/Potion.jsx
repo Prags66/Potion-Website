@@ -4,8 +4,10 @@
 //   - inline style="..." strings -> style={{ ... }} objects
 //   - self-closing tags (img, br) get the trailing slash
 //   - the wax-seal button's onClick is wired to onSummon (was href="#")
+import { useState } from 'react'
 
 export default function Potion({ onSummon, onNavigate, streak, onOpenModal, username, onLogout, onGoToLogin }) {
+  const [menuOpen, setMenuOpen] = useState(false)
   return (
     <div className="parchment-bg text-on-background font-body-lg min-h-screen relative overflow-hidden flex flex-col justify-center">
       <nav className="relative z-50 w-full px-margin-mobile md:px-margin-desktop py-6 flex items-center justify-between border-b border-[#4a2e1b]/10 bg-white/5 backdrop-blur-sm">
@@ -26,10 +28,9 @@ export default function Potion({ onSummon, onNavigate, streak, onOpenModal, user
             </button>
           )}
         </div>
-        <button className="md:hidden text-[#4a2e1b]">
-          <span className="material-symbols-outlined">menu</span>
-        </button>
+        <button className="md:hidden text-[#4a2e1b] bg-transparent" onClick={() => setMenuOpen(!menuOpen)}> <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span> </button>
       </nav>
+      {menuOpen && ( <div className="md:hidden absolute top-full left-0 w-full bg-[#fff9ed] border-b border-[#4a2e1b]/20 flex flex-col items-center gap-4 py-6 z-50 shadow-lg"> <button type="button" className="font-label-caps tracking-widest text-sm text-[#4a2e1b] bg-transparent" onClick={() => { onNavigate('grimoire'); setMenuOpen(false) }}>My Grimoire</button> <button type="button" className="font-label-caps tracking-widest text-sm text-[#4a2e1b] bg-transparent" onClick={() => { onNavigate('archives'); setMenuOpen(false) }}>Archives</button> <button type="button" className="font-label-caps tracking-widest text-sm text-[#4a2e1b] bg-transparent" onClick={() => { onNavigate('suggestion'); setMenuOpen(false) }}>Apothecary</button> {username ? ( <button type="button" className="font-label-caps tracking-widest text-sm text-[#4a2e1b] bg-transparent" onClick={() => { onLogout(); setMenuOpen(false) }}>{username} · Log Out</button> ) : ( <button type="button" className="font-label-caps tracking-widest text-sm text-[#4a2e1b] bg-transparent" onClick={() => { onGoToLogin(); setMenuOpen(false) }}>Log In</button> )} </div> )}
 
       {/* Paper Grain & Burnt Edges Overlay */}
       <div className="absolute inset-0 z-0 burnt-edges"></div>

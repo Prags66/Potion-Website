@@ -1,8 +1,10 @@
 // "My Archives" — a log of the notes/suggestions this user has submitted
 // through the Apothecary (Suggestion Box). Not from a Stitch export —
 // styled by hand to match the journal-card look used elsewhere.
+import { useState } from 'react'
 
 export default function Archives({ suggestions, loading, onBack, onNavigateGrimoire, onNavigateSuggestion, onOpenModal }) {
+  const [menuOpen, setMenuOpen] = useState(false)
   return (
     <div className="wood-bg text-on-background relative min-h-screen flex flex-col font-body-lg">
       <div className="fixed inset-0 z-0 texture-overlay"></div>
@@ -22,8 +24,10 @@ export default function Archives({ suggestions, loading, onBack, onNavigateGrimo
             <span className="font-label-caps text-label-caps text-primary font-bold border-b-2 border-tertiary pb-1">Archives</span>
             <button type="button" className="font-label-caps text-label-caps text-on-surface-variant font-medium hover:text-tertiary transition-colors duration-300 bg-transparent" onClick={onNavigateSuggestion}>Apothecary</button>
           </nav>
+          <button type="button" className="md:hidden p-2 text-primary bg-transparent" onClick={() => setMenuOpen(!menuOpen)}> <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span> </button>
         </div>
       </header>
+      {menuOpen && ( <div className="md:hidden w-full bg-surface border-b border-tertiary/20 flex flex-col items-center gap-4 py-6 relative z-40"> <button type="button" className="font-label-caps text-label-caps text-on-surface-variant bg-transparent" onClick={() => { onBack(); setMenuOpen(false) }}>The Lab</button> <button type="button" className="font-label-caps text-label-caps text-on-surface-variant bg-transparent" onClick={() => { onNavigateGrimoire(); setMenuOpen(false) }}>My Grimoire</button> <span className="font-label-caps text-label-caps text-primary font-bold">Archives</span> <button type="button" className="font-label-caps text-label-caps text-on-surface-variant bg-transparent" onClick={() => { onNavigateSuggestion(); setMenuOpen(false) }}>Apothecary</button> </div> )}
 
       <main className="flex-grow max-w-4xl mx-auto w-full px-4 md:px-margin-desktop py-12 relative z-10">
         <div className="journal-bg w-full relative p-8 md:p-16 overflow-hidden">
